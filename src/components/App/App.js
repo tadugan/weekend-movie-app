@@ -9,8 +9,11 @@ function App() {
   return (
     <div className="App">
       <h1>The Movies Saga!</h1>
-      <Navigation />
-      <Router>        
+      <Router>    
+        {/* Navigation bar on all views */}
+        <Navigation />
+
+        {/* User is directed to this view on page load. MovieList page */}
         <Route path="/" exact>
           <MovieList />
         </Route>

@@ -1,6 +1,15 @@
+import { Link } from "react-router-dom";
+
 function Navigation() {
     return (
-        <p>Navigation Content</p>
+            <ul>
+                <li>
+                    <Link to="/">HOME</Link>
+                </li>
+                <li>
+                    <Link to="/addmovie">ADD MOVIE</Link>
+                </li>
+            </ul>
     );
 }
 
