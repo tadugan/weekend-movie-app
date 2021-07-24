@@ -19,7 +19,9 @@ TODO:
                 [ ] a dropdown (for the genres)
             [ ] Buttons
                 [ ] "Cancel" returns to MovieList
-                [ ] "Save" captures inputs and sends them to the DB, then sends user to MovieList 
-            [ ] 
+                [ ] "Save" captures inputs and sends them to the DB, then sends user to MovieList
+        [ ] NavigationBar
+            [ ] Setup HashRouter (Router, Link)
+         
 
 
