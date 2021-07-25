@@ -68,7 +68,7 @@ function Navigation() {
                                     </MenuItem>
                                 </Menu>
                             <Typography variant="h4" component="h1" className={classes.title}>
-                                The Movies Saga!
+                                Movie List
                             </Typography>
                         </Toolbar>
                     </AppBar>
