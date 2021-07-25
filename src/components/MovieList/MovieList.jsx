@@ -15,6 +15,9 @@ function MovieList() {
         media: {
           height: 274,
         },
+        addmovie: {
+            margin: "0 0 24px 0"
+        },
       });
 
     const classes = useStyles();  
@@ -38,12 +41,24 @@ function MovieList() {
         history.push(`/details/${movieId}`);
     }
 
+    const goToAddMovie = () => {
+        history.push(`/addmovie`);
+    }
+
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
     return (
         <main>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.addmovie}
+                    onClick={goToAddMovie}
+                >
+                    Add a Movie
+                </Button>
                 <Grid 
                     container
                     spacing={2}
@@ -58,6 +73,7 @@ function MovieList() {
                                 <Card
                                     className={classes.root}
                                     onClick={() => {handleClick(movie.id)}}
+                                    variant="outlined"
                                 >
                                     <CardActionArea>
                                         <CardMedia
@@ -66,9 +82,9 @@ function MovieList() {
                                             title={movie.title}
                                         />
                                         <CardContent>
-                                            <Typography 
-                                                gutterBottom 
-                                                variant="subtitle1" 
+                                            <Typography
+                                                gutterBottom
+                                                variant="subtitle1"
                                                 component="h2"
                                             >
                                                 {movie.title}

@@ -37,7 +37,6 @@ function Details() {
 
     return (
         <div>
-            <p>movie is: {movie}</p>
             <h2>Title: {movieDetails[0].title}</h2>
             <img 
                 src={movieDetails[0].poster} 
