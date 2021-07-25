@@ -2,6 +2,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { Button } from "@material-ui/core";
 
 function AddMovie() {
 
@@ -14,6 +21,29 @@ function AddMovie() {
     const [ description, setDescription ] = useState('');
     const [ movieGenre, setMovieGenre ] = useState('1');
     const [ areInputsInvalid, setAreInputsInvalid ] = useState(false);
+
+    // Component styling
+    const useStyles = makeStyles((theme) => ({
+        root: {
+          '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '25ch',
+          },
+          '& > *': {
+            margin: theme.spacing(1),
+            width: '25ch',
+          },
+          formControl: {
+            margin: theme.spacing(1),
+            minWidth: 120,
+          },
+          selectEmpty: {
+            marginTop: theme.spacing(2),
+          },
+        },
+      }));
+
+    const classes = useStyles();
 
     // return the user to MovieList
     const backToList = () => {
@@ -33,6 +63,8 @@ function AddMovie() {
             description,
             genre_id: movieGenre
         }});
+        // return to the MovieList
+        backToList();
     }
 
     useEffect(() => {
@@ -41,48 +73,62 @@ function AddMovie() {
 
     return (
         <div>
-            <input 
-                type="text"
-                placeholder="Movie Title"
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
-            />
-            <br />
-            <input 
-                type="text"
-                placeholder="Movie Poster URL"
-                value={url}
-                onChange={(event) => setUrl(event.target.value)} 
-            />
-            <br />
-            <textarea 
-                placeholder="Movie Description"
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-            >
-            </textarea>
-            <br />
-            <select 
-                name="cars" 
-                id="cars"
-                value={movieGenre}
-                onChange={(event) => setMovieGenre(event.target.value)}
-            >
-                {genres.map((genre, index) => {
-                    return (
-                        <option 
-                            key={index} 
-                            value={genre.id}
-                        >
-                        {genre.name}
-                        </option>
-                    );
-                })}
-            </select>
+            <form className={classes.root} noValidate autoComplete="off">
+                <TextField 
+                    id="filled-basic" 
+                    label="Movie Title" 
+                    variant="filled"
+                    value={title}
+                    onChange={(event) => setTitle(event.target.value)} 
+                />
+                <br />
+                <TextField 
+                    id="filled-basic" 
+                    label="Poster URL" 
+                    variant="outlined"
+                    value={url}
+                    onChange={(event) => setUrl(event.target.value)} 
+                />
+                <br />
+                <TextField
+                    id="outlined-multiline-static"
+                    label="Description"
+                    multiline
+                    rows={4}
+                    variant="outlined"
+                    value={description}
+                    onChange={(event) => setDescription(event.target.value)}
+                />
+                <br />
+                <FormControl className={classes.formControl}>
+                    <InputLabel shrink id="select-genre-label-label">
+                        Genre
+                    </InputLabel>
+                    <Select
+                    labelId="select-genre-label-label"
+                    id="select-genre-label"
+                    value={movieGenre}
+                    onChange={(event) => setMovieGenre(event.target.value)}
+                    displayEmpty
+                    className={classes.selectEmpty}
+                    >
+                        {genres.map((genre, index) => {
+                            return (
+                                <MenuItem 
+                                    key={index} 
+                                    value={genre.id}
+                                >
+                                    {genre.name}
+                                </MenuItem>
+                            );
+                        })}
+                    </Select>
+                </FormControl>
+            </form>
             <section>
                 <br />
-                <button type="button" onClick={backToList}>Cancel</button>
-                <button type="button" onClick={handleSave}>Save</button>
+                <Button type="button" onClick={backToList} variant="contained" color="secondary">Cancel</Button>
+                <Button type="button" onClick={handleSave} variant="contained" color="primary">Save</Button>
             </section>
             {areInputsInvalid ? <p>*Please fill all input fields</p> : ''}
         </div>
