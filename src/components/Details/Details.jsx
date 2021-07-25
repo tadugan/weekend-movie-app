@@ -5,11 +5,15 @@ import { useHistory, useParams } from "react-router-dom";
 
 function Details() {
 
+    
     const movieDetails = useSelector(store => store.specificMovie);
     const history = useHistory();
     const dispatch = useDispatch();
+
+    // Stores Url Params
     const { movie } = useParams();
 
+    // Get details for movie based on Url Params
     const getMovieDetails = (movieId) => {
         axios.get(`/api/movie/${movieId}`)
             .then(response => {
@@ -25,8 +29,6 @@ function Details() {
     const backToList = () => {
         history.push('/');
     }
-
-    
 
     useEffect(() => {
         getMovieDetails(movie);
