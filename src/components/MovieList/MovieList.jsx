@@ -51,6 +51,8 @@ function MovieList() {
                                 alt={movie.title}
                                 value={movie.id}
                                 onClick={() => {handleClick(movie.id)}}
+                                width="185"
+                                height="274"
                             />
                         </div>
                     );

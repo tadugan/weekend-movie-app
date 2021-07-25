@@ -12,7 +12,7 @@ function AddMovie() {
     const [ title, setTitle ] = useState('');
     const [ url, setUrl ] = useState('');
     const [ description, setDescription ] = useState('');
-    const [ movieGenre, setMovieGenre ] = useState('Adventure');
+    const [ movieGenre, setMovieGenre ] = useState('1');
     const [ areInputsInvalid, setAreInputsInvalid ] = useState(false);
 
     // return the user to MovieList
@@ -22,10 +22,17 @@ function AddMovie() {
 
     const handleSave = () => {
         // Validate inputs
-        if (title === '' || url === '' || description === '' || genre === '') {
+        console.log(movieGenre);
+        if (title === '' || url === '' || description === '' || movieGenre === '') {
             setAreInputsInvalid(true);
             return;
         }
+        dispatch({ type: 'ADD_MOVIE', payload: {
+            title,
+            poster: url,
+            description,
+            genre_id: movieGenre
+        }});
     }
 
     useEffect(() => {
@@ -65,7 +72,7 @@ function AddMovie() {
                     return (
                         <option 
                             key={index} 
-                            value={genre.name}
+                            value={genre.id}
                         >
                         {genre.name}
                         </option>

@@ -18,6 +18,8 @@ function Details() {
             <img 
                 src={movieDetails[0].poster} 
                 alt={movieDetails[0].title}
+                width="185"
+                height="274"
             />
             <h3>Genres:</h3>
             <ul>
