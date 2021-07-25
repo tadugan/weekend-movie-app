@@ -12,7 +12,8 @@ function AddMovie() {
     const [ title, setTitle ] = useState('');
     const [ url, setUrl ] = useState('');
     const [ description, setDescription ] = useState('');
-    const [ movieGenre, setMovieGenre ] = useState('');
+    const [ movieGenre, setMovieGenre ] = useState('Adventure');
+    const [ areInputsInvalid, setAreInputsInvalid ] = useState(false);
 
     // return the user to MovieList
     const backToList = () => {
@@ -20,11 +21,11 @@ function AddMovie() {
     }
 
     const handleSave = () => {
-        console.log('CLICKED save');
-        console.log('title:', title);
-        console.log('url:', url);
-        console.log('description:', description);
-        console.log('movieGenre:', movieGenre);
+        // Validate inputs
+        if (title === '' || url === '' || description === '' || genre === '') {
+            setAreInputsInvalid(true);
+            return;
+        }
     }
 
     useEffect(() => {
@@ -71,12 +72,12 @@ function AddMovie() {
                     );
                 })}
             </select>
-            <select></select>
             <section>
                 <br />
                 <button type="button" onClick={backToList}>Cancel</button>
                 <button type="button" onClick={handleSave}>Save</button>
             </section>
+            {areInputsInvalid ? <p>*Please fill all input fields</p> : ''}
         </div>
     );
 }
