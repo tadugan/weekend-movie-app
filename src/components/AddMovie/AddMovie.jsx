@@ -9,16 +9,22 @@ function AddMovie() {
     const dispatch = useDispatch();
     const genres = useSelector(store => store.genres);
 
-    console.log('This is genres:', genres);
-
-    // const [  ] = useState();
-    // const [  ] = useState();
-    // const [  ] = useState();
-    // const [  ] = useState();
+    const [ title, setTitle ] = useState('');
+    const [ url, setUrl ] = useState('');
+    const [ description, setDescription ] = useState('');
+    const [ movieGenre, setMovieGenre ] = useState('');
 
     // return the user to MovieList
     const backToList = () => {
         history.push('/');
+    }
+
+    const handleSave = () => {
+        console.log('CLICKED save');
+        console.log('title:', title);
+        console.log('url:', url);
+        console.log('description:', description);
+        console.log('movieGenre:', movieGenre);
     }
 
     useEffect(() => {
@@ -30,33 +36,38 @@ function AddMovie() {
             <input 
                 type="text"
                 placeholder="Movie Title"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
             />
             <br />
             <input 
                 type="text"
-                placeholder="Movie Poster URL" 
+                placeholder="Movie Poster URL"
+                value={url}
+                onChange={(event) => setUrl(event.target.value)} 
             />
             <br />
-            <textarea placeholder="Movie Description">
+            <textarea 
+                placeholder="Movie Description"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+            >
             </textarea>
             <br />
-            <select name="cars" id="cars">
-                {/* <option value="Adventure">Adventure</option>
-                <option value="Animated">Animated</option>
-                <option value="Biographical">Biographical</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Disaster">Disaster</option>
-                <option value="Drama">Drama</option>
-                <option value="Epic">Epic</option>
-                <option value="Fantasy">Fantasy</option>
-                <option value="Musical">Musical</option>
-                <option value="Romantic">Romantic</option>
-                <option value="Science Fiction">Science Fiction</option>
-                <option value="Space-Opera">Space-Opera</option>
-                <option value="Superhero">Superhero</option> */}
+            <select 
+                name="cars" 
+                id="cars"
+                value={movieGenre}
+                onChange={(event) => setMovieGenre(event.target.value)}
+            >
                 {genres.map((genre, index) => {
                     return (
-                        <option key={index} value={genre.name}>{genre.name}</option>
+                        <option 
+                            key={index} 
+                            value={genre.name}
+                        >
+                        {genre.name}
+                        </option>
                     );
                 })}
             </select>
@@ -64,7 +75,7 @@ function AddMovie() {
             <section>
                 <br />
                 <button type="button" onClick={backToList}>Cancel</button>
-                <button type="button">Save</button>
+                <button type="button" onClick={handleSave}>Save</button>
             </section>
         </div>
     );
