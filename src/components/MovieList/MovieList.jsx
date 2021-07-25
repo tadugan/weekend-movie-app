@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +10,7 @@ function MovieList() {
 
     const useStyles = makeStyles({
         root: {
-          width: 185,
-          margin: "16px",
+          width: 184,
         },
         media: {
           height: 274,
@@ -45,31 +44,42 @@ function MovieList() {
 
     return (
         <main>
-            <h1>MovieList</h1>
-                <section className="movies">
+                <Grid 
+                    container
+                    spacing={2}
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="flex-start"
+                    className="movies"
+                >
                     {movies.map(movie => {
                         return (
-                            <Card 
-                                className={classes.root} 
-                                key={movie.id}
-                                onClick={() => {handleClick(movie.id)}}
-                            >
-                                <CardActionArea>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image={movie.poster}
-                                        title={movie.title}
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            {movie.title}
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
+                            <Grid item key={movie.id}>
+                                <Card
+                                    className={classes.root}
+                                    onClick={() => {handleClick(movie.id)}}
+                                >
+                                    <CardActionArea>
+                                        <CardMedia
+                                            className={classes.media}
+                                            image={movie.poster}
+                                            title={movie.title}
+                                        />
+                                        <CardContent>
+                                            <Typography 
+                                                gutterBottom 
+                                                variant="subtitle1" 
+                                                component="h2"
+                                            >
+                                                {movie.title}
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Grid>
                         );
                     })}
-                </section>
+                </Grid>
         </main>
 
     );
