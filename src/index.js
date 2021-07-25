@@ -21,6 +21,7 @@ import { useHistory } from 'react-router-dom';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     // yield takeEvery('FETCH_SPECIFIC_MOVIE', fetchSpecificMovie);
+    yield takeEvery('FETCH_GENRES', fetchGenres);
 }
 
 function* fetchAllMovies() {
@@ -34,6 +35,15 @@ function* fetchAllMovies() {
         console.log('get all error');
     }
         
+}
+
+function* fetchGenres() {
+    try {
+        const genres = yield axios.get('/api/genre');
+        yield put({ type: 'SET_GENRES', payload: genres.data });
+    } catch (error) {
+        console.log('Error getting all genres', error);
+    }
 }
 
 // function* fetchSpecificMovie(action) {
