@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 
 // place holder data so Details.jsx load without erroring out
 // I'm still trying to figure out how to make the GET request for Details.jsx
-// before the return statement runs
+// before the return statement runs in the component
 const placeholderMovie = [
     {
         title: 'movie',
