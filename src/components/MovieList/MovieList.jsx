@@ -1,10 +1,24 @@
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './MovieList.css'
+import { makeStyles } from '@material-ui/core/styles';
 
 function MovieList() {
+
+    const useStyles = makeStyles({
+        root: {
+          width: 185,
+          margin: "16px",
+        },
+        media: {
+          height: 274,
+        },
+      });
+
+    const classes = useStyles();  
 
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
@@ -35,17 +49,24 @@ function MovieList() {
                 <section className="movies">
                     {movies.map(movie => {
                         return (
-                            <div key={movie.id}>
-                                <h3>{movie.title}</h3>
-                                    <img
-                                        src={movie.poster}
-                                        alt={movie.title}
-                                        value={movie.id}
-                                        onClick={() => {handleClick(movie.id)}}
-                                        width="185"
-                                        height="274"
+                            <Card 
+                                className={classes.root} 
+                                key={movie.id}
+                                onClick={() => {handleClick(movie.id)}}
+                            >
+                                <CardActionArea>
+                                    <CardMedia
+                                        className={classes.media}
+                                        image={movie.poster}
+                                        title={movie.title}
                                     />
-                            </div>
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {movie.title}
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
                         );
                     })}
                 </section>
