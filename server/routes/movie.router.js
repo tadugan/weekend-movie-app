@@ -75,4 +75,24 @@ router.post('/', (req, res) => {
   })
 })
 
+// PUT route to edit movie
+router.put('/', (req, res) => {
+  
+  const movieInfo = req.body;
+  
+  const query = `
+  UPDATE movies
+  SET title = $1, description = $2
+  WHERE id = $3;
+  `;
+
+  pool.query(query, [movieInfo.title, movieInfo.description, movieInfo.id])
+    .then(response => {
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      console.log('Error updating movie details', err);
+    })
+})
+
 module.exports = router;

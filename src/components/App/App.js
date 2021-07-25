@@ -4,6 +4,7 @@ import MovieList from '../MovieList/MovieList'
 import Details from '../Details/Details';
 import AddMovie from '../AddMovie/AddMovie';
 import Navigation from '../Navigation/Navigation';
+import EditPage from '../EditPage/EditPage';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
         {/* Add Movie page */}
         <Route exact path="/addmovie">
           <AddMovie />
+        </Route>
+        <Route exact path="/editpage/:movie">
+          <EditPage />
         </Route>
       </Router>
     </div>

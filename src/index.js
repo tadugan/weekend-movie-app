@@ -31,6 +31,7 @@ function* rootSaga() {
     // yield takeEvery('FETCH_SPECIFIC_MOVIE', fetchSpecificMovie);
     yield takeEvery('FETCH_GENRES', fetchGenres);
     yield takeEvery('ADD_MOVIE', addMovie);
+    yield takeEvery('EDIT_MOVIE', editMovie);
 }
 
 function* fetchAllMovies() {
@@ -60,6 +61,14 @@ function* addMovie(action) {
         yield axios.post('/api/movie', action.payload);
     } catch (error) {
         console.log('Error adding a movie', error);
+    }
+}
+
+function* editMovie(action) {
+    try {
+        yield axios.put('api/movie', action.payload);
+    } catch (error) {
+        console.log('Error editing a movie', error);
     }
 }
 
@@ -121,8 +130,10 @@ const storeInstance = createStore(
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
+    <React.StrictMode>
         <Provider store={storeInstance}>
         <App />
-        </Provider>,
+        </Provider>
+    </React.StrictMode>,
     document.getElementById('root')
 );
