@@ -12,9 +12,17 @@ import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-///
-
-///
+// place holder data so Details.jsx load without erroring out
+// I'm still trying to figure out how to make the GET request for Details.jsx
+// before the return statement runs
+const placeholderMovie = [
+    {
+        title: 'movie',
+        poster: 'https://m.media-amazon.com/images/I/51IGQmBS1VL._AC_.jpg',
+        name: 'Animated',
+        description: 'description'
+    }
+]
 
 
 // Create the rootSaga generator function
@@ -89,7 +97,7 @@ const genres = (state = [], action) => {
 }
 
 // Used to store the movie that is being looked at
-const specificMovie = (state = {}, action) => {
+const specificMovie = (state = placeholderMovie, action) => {
     switch (action.type) {
         case 'SET_SPECIFIC_MOVIE':
             return action.payload;

@@ -1,19 +1,43 @@
+import axios from "axios";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 
 function Details() {
 
+    
     const movieDetails = useSelector(store => store.specificMovie);
     const history = useHistory();
+    const dispatch = useDispatch();
 
+    // Stores Url Params
+    const { movie } = useParams();
+
+    // Get details for movie based on Url Params
+    const getMovieDetails = (movieId) => {
+        axios.get(`/api/movie/${movieId}`)
+            .then(response => {
+                console.log(response);
+                dispatch({ type: 'SET_SPECIFIC_MOVIE', payload: response.data });
+            })
+            .catch(err => {
+                console.log('Error getting specific movie. Error:', err);
+            })
+    }
+
+    // return the user to MovieList
     const backToList = () => {
-        // return the user to MovieList
         history.push('/');
     }
 
+    useEffect(() => {
+        getMovieDetails(movie);
+        console.log('Use Effect');
+    }, []);
+
     return (
         <div>
+            <p>movie is: {movie}</p>
             <h2>Title: {movieDetails[0].title}</h2>
             <img 
                 src={movieDetails[0].poster} 
