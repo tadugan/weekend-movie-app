@@ -22,15 +22,6 @@ function MovieList() {
     // }
 
     const handleClick = (movieId) => {
-        // axios.get(`/api/movie/${movieId}`)
-        //     .then(response => {
-        //         console.log(response);
-        //         dispatch({ type: 'SET_SPECIFIC_MOVIE', payload: response.data });
-        //         history.push(`/details/${movieId}`);
-        //     })
-        //     .catch(err => {
-        //         console.log('Error getting specific movie. Error:', error);
-        //     })
         history.push(`/details/${movieId}`);
     }
 
