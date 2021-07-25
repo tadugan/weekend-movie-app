@@ -1,27 +1,28 @@
 TODO: 
 
-    [ ] Setup
-
-    [ ] Components/Views
-        [ ] App.js
-            [ ] Create Nav bar to move from view to view 
-        [ ] MovieList
-            [ ] On click of a poster, go to the details page of that movie
-        [ ] Details
-            [ ] Display all information for a movie
-                [ ] Store info in Redux
-                [ ] GET request for a specific movie with req.params and :id
-        [ ] AddMovie
-            [ ] Create Inputs
-                [ ] an input field (for the movie title)
-                [ ] an input field (for the movie poster image URL))
-                [ ] a textarea (for the movie description)
-                [ ] a dropdown (for the genres)
-            [ ] Buttons
-                [ ] "Cancel" returns to MovieList
-                [ ] "Save" captures inputs and sends them to the DB, then sends user to MovieList
-        [ ] NavigationBar
-            [ ] Setup HashRouter (Router, Link)
+    [x] Components/Views
+        [x] App.js
+            [x] Create Nav bar to move from view to view 
+        [x] MovieList
+            [x] On click of a poster, go to the details page of that movie
+        [x] Details
+            [x] Display all information for a movie
+                [x] Store info in Redux
+                [x] GET request for a specific movie with req.params and :id
+        [x] AddMovie
+            [x] Create Inputs
+                [x] an input field (for the movie title)
+                [x] an input field (for the movie poster image URL))
+                [x] a textarea (for the movie description)
+                [x] a dropdown (for the genres)
+            [x] Buttons
+                [x] "Cancel" returns to MovieList
+                [x] "Save" captures inputs and sends them to the DB, then sends user to MovieList
+        [x] NavigationBar
+            [x] Setup HashRouter (Router, Link)
          
+
+    [ ] Stretch Goals
+        [ ] Refresh on Details page
 
 
