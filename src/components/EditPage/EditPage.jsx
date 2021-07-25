@@ -1,4 +1,4 @@
-import { Button, FormControl, TextField } from "@material-ui/core";
+import { Button, Grid, TextField } from "@material-ui/core";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
@@ -21,32 +21,59 @@ function EditPage() {
         history.push(`/details/${movie}`);
     }
 
+    const handleCancel = () => {
+        history.push(`/details/${movie}`);
+    }
+
     return (
         <div>
-            <p>Edit Page Content</p>
-            <p>Movie ID: {movie}</p>
-            <FormControl>
-                <TextField
-                    id="filled-basic"
-                    label="Edit Movie Title"
-                    variant="filled"
-                    value={newTitle}
-                    onChange={(event) => setNewTitle(event.target.value)}
-                />
-                <TextField
-                    id="outlined-multiline-static"
-                    label="Description"
-                    multiline
-                    rows={4}
-                    variant="outlined"
-                    value={newDescription}
-                    onChange={(event) => setNewDescription(event.target.value)}
-                />
-            </FormControl>
-            <br />
-            <Button onClick={handleSave}>
-                Save
-            </Button>
+            <Grid 
+                container
+                spacing={2}
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+            >
+                    <Grid item>
+                        <TextField
+                            id="filled-basic"
+                            label="Edit Movie Title"
+                            variant="filled"
+                            value={newTitle}
+                            onChange={(event) => setNewTitle(event.target.value)}
+                        />
+                    </Grid>
+                    <Grid item>
+                        <TextField
+                            id="outlined-multiline-static"
+                            label="Description"
+                            multiline
+                            rows={4}
+                            variant="outlined"
+                            value={newDescription}
+                            onChange={(event) => setNewDescription(event.target.value)}
+                        />
+                    </Grid>
+                <Grid 
+                    item 
+                    container
+                    spacing={2}
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    <Grid item>
+                        <Button onClick={handleCancel} variant="contained" color="secondary">
+                            Cancel
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        <Button onClick={handleSave} variant="contained" color="primary">
+                            Save
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Grid>
         </div>
     );
 }

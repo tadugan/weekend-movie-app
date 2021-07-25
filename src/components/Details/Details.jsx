@@ -11,6 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Grid } from "@material-ui/core";
 
 function Details() {
 
@@ -90,19 +91,32 @@ function Details() {
                             Genre:
                         {movieDetails.map((genre, index) => {
                             return (
-                                <>
-                                <span key={index}> {genre.name}</span>
+                                <span key={index}>
+                                <span> {genre.name}</span>
                                 {isLastGenre(index, movieDetails) ? <span></span> : <span>, </span>}
-                                </>
+                                </span>
                             );
                         })}
                         </Typography>
-                        <Button variant="contained" color="secondary" onClick={() => {goToEdit(movie)}}>
-                            Edit Movie Details
-                        </Button>
-                        <Button variant="contained" onClick={backToList}>
-                            Return to Movie List
-                        </Button>
+                        <Grid
+                            container
+                            spacing={2}
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+
+                        >
+                            <Grid item>
+                                <Button variant="contained" color="secondary" onClick={() => {goToEdit(movie)}}>
+                                    Edit Movie Details
+                                </Button>
+                            </Grid>
+                            <Grid item>
+                                <Button variant="contained" onClick={backToList}>
+                                    Return to Movie List
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </CardContent>
                 </CardActionArea>
             </Card>
