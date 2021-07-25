@@ -8,7 +8,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 
 function AddMovie() {
 
@@ -41,6 +41,16 @@ function AddMovie() {
             marginTop: theme.spacing(2),
           },
         },
+        inputGrid: {
+            maxWidth: 244,
+            margin: "auto",
+          },
+        cancel: {
+            margin: "0 0 0 12px"
+        },
+        buttons: {
+            margin: "16px 0 0 0"
+        },
       }));
 
     const classes = useStyles();
@@ -72,66 +82,89 @@ function AddMovie() {
     }, []);
 
     return (
-        <div>
+        <Grid
+            container
+            spacing={1}
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            className={classes.inputGrid}
+        >
             <form className={classes.root} noValidate autoComplete="off">
-                <TextField 
-                    id="filled-basic" 
-                    label="Movie Title" 
-                    variant="filled"
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value)} 
-                />
-                <br />
-                <TextField 
-                    id="filled-basic" 
-                    label="Poster URL" 
-                    variant="outlined"
-                    value={url}
-                    onChange={(event) => setUrl(event.target.value)} 
-                />
-                <br />
-                <TextField
-                    id="outlined-multiline-static"
-                    label="Description"
-                    multiline
-                    rows={4}
-                    variant="outlined"
-                    value={description}
-                    onChange={(event) => setDescription(event.target.value)}
-                />
-                <br />
-                <FormControl className={classes.formControl}>
-                    <InputLabel shrink id="select-genre-label-label">
-                        Genre
-                    </InputLabel>
-                    <Select
-                    labelId="select-genre-label-label"
-                    id="select-genre-label"
-                    value={movieGenre}
-                    onChange={(event) => setMovieGenre(event.target.value)}
-                    displayEmpty
-                    className={classes.selectEmpty}
-                    >
-                        {genres.map((genre, index) => {
-                            return (
-                                <MenuItem 
-                                    key={index} 
-                                    value={genre.id}
-                                >
-                                    {genre.name}
-                                </MenuItem>
-                            );
-                        })}
-                    </Select>
-                </FormControl>
+                <Grid item>
+                    <TextField
+                        id="filled-basic"
+                        label="Movie Title"
+                        variant="filled"
+                        value={title}
+                        onChange={(event) => setTitle(event.target.value)}
+                    />
+                </Grid>
+                <Grid item>
+                    <TextField
+                        id="filled-basic"
+                        label="Poster URL"
+                        variant="outlined"
+                        value={url}
+                        onChange={(event) => setUrl(event.target.value)}
+                    />
+                </Grid>
+                <Grid item>
+                    <TextField
+                        id="outlined-multiline-static"
+                        label="Description"
+                        multiline
+                        rows={4}
+                        variant="outlined"
+                        value={description}
+                        onChange={(event) => setDescription(event.target.value)}
+                    />
+                </Grid>
+                <Grid item>
+                    <FormControl className={classes.formControl}>
+                        <InputLabel shrink id="select-genre-label-label">
+                            Genre
+                        </InputLabel>
+                        <Select
+                        labelId="select-genre-label-label"
+                        id="select-genre-label"
+                        value={movieGenre}
+                        onChange={(event) => setMovieGenre(event.target.value)}
+                        displayEmpty
+                        className={classes.selectEmpty}
+                        >
+                            {genres.map((genre, index) => {
+                                return (
+                                    <MenuItem
+                                        key={index}
+                                        value={genre.id}
+                                    >
+                                        {genre.name}
+                                    </MenuItem>
+                                );
+                            })}
+                        </Select>
+                    </FormControl>
+                </Grid>
             </form>
-            <section>
-                <br />
-                <Button type="button" onClick={backToList} variant="contained" color="secondary">Cancel</Button>
-                <Button type="button" onClick={handleSave} variant="contained" color="primary">Save</Button>
-            </section>
+            <Grid 
+                item 
+                container
+                spacing={2}
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                className={classes.buttons}
+            >
+                <Grid item>
+                    <Button type="button" onClick={backToList} variant="contained" color="secondary" className={classes.cancel}>Cancel</Button>
+                </Grid>
+                <Grid item>
+                    <Button type="button" onClick={handleSave} variant="contained" color="primary">Save</Button>
+                </Grid>
+            </Grid>
             {areInputsInvalid ? <p>*Please fill all input fields</p> : ''}
-        </div>
+        </Grid>
     );
 }
 
