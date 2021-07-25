@@ -19,7 +19,7 @@ function App() {
         </Route>
         
         {/* Details page */}
-        <Route exact path="/details">
+        <Route exact path="/details/:movie">
           <Details />
         </Route>
         {/* Add Movie page */}

@@ -22,42 +22,42 @@ function MovieList() {
     // }
 
     const handleClick = (movieId) => {
-        axios.get(`/api/movie/${movieId}`)
-            .then(response => {
-                console.log(response);
-                dispatch({ type: 'SET_SPECIFIC_MOVIE', payload: response.data });
-                history.push('/details');
-            })
-            .catch(err => {
-                console.log('Error getting specific movie. Error:', error);
-            })
+        // axios.get(`/api/movie/${movieId}`)
+        //     .then(response => {
+        //         console.log(response);
+        //         dispatch({ type: 'SET_SPECIFIC_MOVIE', payload: response.data });
+        //         history.push(`/details/${movieId}`);
+        //     })
+        //     .catch(err => {
+        //         console.log('Error getting specific movie. Error:', error);
+        //     })
+        history.push(`/details/${movieId}`);
     }
 
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
-        dispatch({ type: 'FETCH_GENRES'});
     }, []);
 
     return (
         <main>
             <h1>MovieList</h1>
-            <section className="movies">
-                {movies.map(movie => {
-                    return (
-                        <div key={movie.id}>
-                            <h3>{movie.title}</h3>
-                            <img 
-                                src={movie.poster} 
-                                alt={movie.title}
-                                value={movie.id}
-                                onClick={() => {handleClick(movie.id)}}
-                                width="185"
-                                height="274"
-                            />
-                        </div>
-                    );
-                })}
-            </section>
+                <section className="movies">
+                    {movies.map(movie => {
+                        return (
+                            <div key={movie.id}>
+                                <h3>{movie.title}</h3>
+                                    <img
+                                        src={movie.poster}
+                                        alt={movie.title}
+                                        value={movie.id}
+                                        onClick={() => {handleClick(movie.id)}}
+                                        width="185"
+                                        height="274"
+                                    />
+                            </div>
+                        );
+                    })}
+                </section>
         </main>
 
     );
