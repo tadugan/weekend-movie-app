@@ -10,11 +10,17 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
+///
+
+///
+
 
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
-    yield takeEvery('FETCH_SPECIFIC_MOVIE', fetchSpecificMovie);
+    // yield takeEvery('FETCH_SPECIFIC_MOVIE', fetchSpecificMovie);
 }
 
 function* fetchAllMovies() {
@@ -30,15 +36,15 @@ function* fetchAllMovies() {
         
 }
 
-function* fetchSpecificMovie(action) {
-    // get the movie that was clicked on, by movie ID
-    try {
-        const movie = yield axios.get(`/api/movie/${action.payload}`)
-        yield put({ type: 'SET_SPECIFIC_MOVIE', payload: movie.data})
-    } catch (error) {
-        console.log('Error getting specific movie. Error:', error);
-    }
-}
+// function* fetchSpecificMovie(action) {
+//     // get the movie that was clicked on, by movie ID
+//     try {
+//         const movie = yield axios.get(`/api/movie/${action.payload}`);
+//         yield put({ type: 'SET_SPECIFIC_MOVIE', payload: movie.data});
+//     } catch (error) {
+//         console.log('Error getting specific movie. Error:', error);
+//     }
+// }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
